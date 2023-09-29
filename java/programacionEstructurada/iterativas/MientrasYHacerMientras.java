@@ -26,7 +26,23 @@ public class MientrasYHacerMientras {
             contador--; //contador = contador - 1;s
         } while (contador > 0);
 
+
         System.out.printf("Mi nombre es %s y mi edad es %d mi lenguaje preferido es : %s \n", "Ian",24,"Java");
 
+        //Bucle for -> Conocemos la cantidad de veces que iteramos
+
+        char rta = 'S';
+        do {
+            //Preguntar al usuario que dato quiere cargar en rta
+            switch (rta) {
+                case 'S': System.out.println("Hola opcion 1");
+                    break;
+                case 'N': System.out.println("Hola opcion Salir");    
+                    break;
+                default:
+                    System.out.println("Opcion invalida");
+                    break;
+            }
+        } while (rta != 'N');        
     }
 }
