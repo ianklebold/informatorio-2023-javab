@@ -50,4 +50,8 @@ public class Carrito {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
+    public void addProduct(Producto product){
+        this.getProductos().add(product);
+    }
 }

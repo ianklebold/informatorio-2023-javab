@@ -9,7 +9,7 @@ import java.util.List;
 public class BdProductos {
     public static List<Producto> productos = new ArrayList<>();
 
-    public static List<Producto> getProducts(){
+    public static void initProducts(){
 
         Producto producto1 = new Producto(1L, "Gafas de Sol Elegantes", 49.99, 100, "Gafas de sol elegantes con montura de titanio y lentes polarizadas. Perfectas para cualquier ocasión bajo el sol.");
         Producto producto2 = new Producto(2L, "Reloj de Lujo 'Oro Brillante'", 299.99, 50, "Un reloj de lujo con una correa de cuero genuino y detalles de oro brillante. Hora de lucir con estilo.");
@@ -32,9 +32,18 @@ public class BdProductos {
         Producto producto19 = new Producto(19L, "Telescopio 'Observador del Cielo'", 179.99, 30, "Un telescopio de alta calidad para observar las maravillas del cielo nocturno. ¡Descubre el universo!");
         Producto producto20 = new Producto(20L, "Caja de Herramientas 'Hazlo Tú Mismo'", 39.99, 40, "Una caja de herramientas completa para tus proyectos de bricolaje. ¡Conviértete en un maestro del bricolaje!");
 
-        return List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7,
+        productos = List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7,
                 producto8, producto9, producto10, producto11, producto12,
                 producto13, producto14, producto15, producto16, producto17,
                 producto18, producto19, producto20);
+    }
+
+    public static Producto getProductById(Long id){
+        for (Producto products : productos) {
+            if (id.equals(products.getId())){
+                return products;
+            }
+        }
+        return null;
     }
 }
