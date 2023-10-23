@@ -14,7 +14,7 @@ public class Main {
         //Creacion de scanner
         InputConsoleService.createScanner();
 
-        int opc = 0;
+        int opc;
         do {
             System.out.println("1. Ver productos");
             System.out.println("2. Agregar producto al carrito");
@@ -35,11 +35,11 @@ public class Main {
                     System.out.println("Comprar producto");
                     break;
                 case 3:
-                    // buyProducts(); metodo que realice la compra si y solo si carrito no esta vacio
+                    // buyProducts(List<Long> idProductos); metodo que realice la compra si y solo si carrito no esta vacio
                     System.out.println("Comprar producto");
                     break;
                 case 4:
-                    // getOrders(String state); metodo que retorne los pedidos segun su estado state. Si state == null devolver todos los pedidos
+                    // getOrders(String state); metodo que retorne los pedidos segun su estado. Si state == null devolver todos los pedidos
                     System.out.println("Ver compras realizadas");
                     break;
                 case 0:
@@ -51,6 +51,6 @@ public class Main {
 
         }while (opc != 0);
 
-        InputConsoleService.getScanner().close();
+        InputConsoleService.closeScanner();
     }
 }

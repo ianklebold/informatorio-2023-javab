@@ -6,8 +6,6 @@ public class InputConsoleService{
 
     public static Scanner scanner;
 
-    private InputConsoleService() {}
-
     public static void createScanner(){
         if(scanner == null){
             scanner = new Scanner(System.in);
@@ -15,9 +13,7 @@ public class InputConsoleService{
     }
 
     public static Scanner getScanner(){
-        if (scanner == null) {
-            scanner = new Scanner(System.in);
-        }
+        createScanner();
         return scanner;
     }
 
