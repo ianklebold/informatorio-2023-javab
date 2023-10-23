@@ -1,4 +1,4 @@
-package poo.ejercicioclase;
+package poo.ejercicioclase.ejercicio1;
 
 public class Vehiculo {
     private String marca;

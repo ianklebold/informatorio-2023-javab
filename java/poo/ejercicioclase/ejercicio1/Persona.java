@@ -1,4 +1,4 @@
-package poo.ejercicioclase;
+package poo.ejercicioclase.ejercicio1;
 
 import java.time.LocalDate;
 
