@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BdProductos {
-    public static List<Producto> productos = new ArrayList<>();
+    public static List<Producto> productos = initProducts();
 
-    public static void initProducts(){
+    public static List<Producto> initProducts(){
 
         Producto producto1 = new Producto(1L, "Gafas de Sol Elegantes", 49.99, 100, "Gafas de sol elegantes con montura de titanio y lentes polarizadas. Perfectas para cualquier ocasión bajo el sol.");
         Producto producto2 = new Producto(2L, "Reloj de Lujo 'Oro Brillante'", 299.99, 50, "Un reloj de lujo con una correa de cuero genuino y detalles de oro brillante. Hora de lucir con estilo.");
@@ -36,6 +36,8 @@ public class BdProductos {
                 producto8, producto9, producto10, producto11, producto12,
                 producto13, producto14, producto15, producto16, producto17,
                 producto18, producto19, producto20);
+
+        return productos;
     }
 
     public static Producto getProductById(Long id){

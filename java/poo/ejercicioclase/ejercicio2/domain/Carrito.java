@@ -1,21 +1,22 @@
 package poo.ejercicioclase.ejercicio2.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Carrito {
     private Long id;
     private Cliente cliente;
-    private List<Producto> productos = new ArrayList<>();
+    private HashMap<Producto, Integer> products;
     private Pedido pedido;
 
     public Carrito() {
     }
 
-    public Carrito(Long id, Cliente cliente, List<Producto> productos, Pedido pedido) {
+    public Carrito(Long id, Cliente cliente, HashMap<Producto, Integer> products, Pedido pedido) {
         this.id = id;
         this.cliente = cliente;
-        this.productos = productos;
+        this.products = products;
         this.pedido = pedido;
     }
 
@@ -35,12 +36,12 @@ public class Carrito {
         this.cliente = cliente;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
+    public HashMap<Producto, Integer> getProducts() {
+        return products;
     }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setProducts(HashMap<Producto, Integer> products) {
+        this.products = products;
     }
 
     public Pedido getPedido() {
@@ -51,7 +52,4 @@ public class Carrito {
         this.pedido = pedido;
     }
 
-    public void addProduct(Producto product){
-        this.getProductos().add(product);
-    }
 }

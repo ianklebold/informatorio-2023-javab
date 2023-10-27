@@ -8,12 +8,20 @@ import poo.ejercicioclase.ejercicio2.domain.Pedido;
 import poo.ejercicioclase.ejercicio2.domain.Producto;
 import poo.ejercicioclase.ejercicio2.entrada.InputConsoleService;
 import poo.ejercicioclase.ejercicio2.enums.EstadoPedido;
+import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicio;
+import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicioImpl;
+import poo.ejercicioclase.ejercicio2.servicio.menu.MenuCompra;
+import poo.ejercicioclase.ejercicio2.servicio.menu.MenuCompraImpl;
+import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicio;
+import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicioImpl;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
         BdProductos.initProducts();
+
         
         //Creacion de scanner
         InputConsoleService.createScanner();
@@ -23,6 +31,9 @@ public class Main {
         cliente.setDireccion("Calle falsa 123");
         cliente.setEmail("CorreoFalso@gmail.com");
         cliente.setCarrito(new Carrito());
+
+        CarritoServicio carritoServicio = new CarritoServicioImpl(cliente.getCarrito());
+        MenuCompra menuCompra = new MenuCompraImpl(new ProductoServicioImpl());
 
         int opc;
         do {
@@ -41,7 +52,12 @@ public class Main {
                     System.out.println("Ver productos");
                     break;
                 case 2:
-                    addProduct(cliente);
+                    Optional<Producto> productoOptional = menuCompra.seleccionarProducto();
+                    if (productoOptional.isPresent()){
+                        int cantidad = menuCompra.seleccionarCantidad();
+                        carritoServicio.addProduct(productoOptional.get(),cantidad);
+                    }
+
                     System.out.println("Comprar producto");
                     break;
                 case 3:
@@ -80,26 +96,6 @@ public class Main {
             listaProductos.append(String.format("ID[%d] %s: %s, %fUSD | stock %d.\n", p.getId(), p.getNombre(), p.getDescription(), p.getPrecio(), p.getStock()));
         }
         System.out.println(listaProductos);
-    }
-
-    private static void addProduct(Cliente cliente) {
-        System.out.println("Ingrese por favor el id del producto : ");
-        Long idProducto = InputConsoleService.getScanner().nextLong();
-        Producto producto = BdProductos.getProductById(idProducto);
-
-        if (!Objects.isNull(producto)){
-            if (cliente.getCarrito().getProductos().isEmpty()){
-                //Crear pedido
-                Pedido pedido = new Pedido();
-                pedido.setCarrito(cliente.getCarrito());
-                pedido.setId(1L);
-                pedido.setCliente(cliente);
-                pedido.setEstado(EstadoPedido.PENDIENTE);
-                cliente.getPedidos().add(pedido);
-            }
-            cliente.getCarrito().addProduct(producto);
-        }
-
     }
 
 }
