@@ -12,13 +12,18 @@ import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicio;
 import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicioImpl;
 import poo.ejercicioclase.ejercicio2.servicio.menu.MenuCompra;
 import poo.ejercicioclase.ejercicio2.servicio.menu.MenuCompraImpl;
+import poo.ejercicioclase.ejercicio2.servicio.pedido.PedidoServicioImpl;
 import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicio;
 import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicioImpl;
+import poo.ejercicioclase.ejercicio2.servicio.stock.StockServicioImpl;
 
 import java.util.Objects;
 import java.util.Optional;
 
 public class Main {
+
+    private static Carrito carritoEnCurso;
+
     public static void main(String[] args) {
         BdProductos.initProducts();
 
@@ -31,8 +36,10 @@ public class Main {
         cliente.setDireccion("Calle falsa 123");
         cliente.setEmail("CorreoFalso@gmail.com");
         cliente.setCarrito(new Carrito());
+        carritoEnCurso = cliente.getCarrito();
 
-        CarritoServicio carritoServicio = new CarritoServicioImpl(cliente.getCarrito());
+        CarritoServicio carritoServicio = new CarritoServicioImpl(new StockServicioImpl(),
+                new PedidoServicioImpl());
         MenuCompra menuCompra = new MenuCompraImpl(new ProductoServicioImpl());
 
         int opc;
@@ -57,8 +64,6 @@ public class Main {
                         int cantidad = menuCompra.seleccionarCantidad();
                         carritoServicio.addProduct(productoOptional.get(),cantidad);
                     }
-
-                    System.out.println("Comprar producto");
                     break;
                 case 3:
                     // buyProducts(List<Long> idProductos);
@@ -67,7 +72,12 @@ public class Main {
                         - Crear un carrito vacio para el cliente.
                         - Descontar el stock de los productos del carrito
                      */
-                    System.out.println("Comprar producto");
+                    boolean resultado = carritoServicio.cerrarCarrito();
+                    if (Boolean.TRUE.equals(resultado)){
+                        System.out.println("Carrito cerrado");
+                    }else {
+                        System.out.println("Algo salio mal!");
+                    }
                     break;
                 case 4:
                     // getOrders(String state); metodo que retorne los pedidos segun su estado. Si state == null devolver todos los pedidos
@@ -98,4 +108,11 @@ public class Main {
         System.out.println(listaProductos);
     }
 
+    public static Carrito getCarritoEnCurso() {
+        return carritoEnCurso;
+    }
+
+    public static void setCarritoEnCurso(Carrito carritoEnCurso) {
+        Main.carritoEnCurso = carritoEnCurso;
+    }
 }

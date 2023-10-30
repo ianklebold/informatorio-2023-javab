@@ -20,6 +20,13 @@ public class Carrito {
         this.pedido = pedido;
     }
 
+    public Carrito(Long id, Cliente cliente) {
+        this.id = id;
+        this.cliente = cliente;
+        this.pedido = null;
+        this.products = new HashMap<>();
+    }
+
     public Long getId() {
         return id;
     }
