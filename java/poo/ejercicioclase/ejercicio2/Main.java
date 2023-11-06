@@ -4,20 +4,17 @@ package poo.ejercicioclase.ejercicio2;
 import poo.ejercicioclase.ejercicio2.basededatos.BdProductos;
 import poo.ejercicioclase.ejercicio2.domain.Carrito;
 import poo.ejercicioclase.ejercicio2.domain.Cliente;
-import poo.ejercicioclase.ejercicio2.domain.Pedido;
 import poo.ejercicioclase.ejercicio2.domain.Producto;
 import poo.ejercicioclase.ejercicio2.entrada.InputConsoleService;
-import poo.ejercicioclase.ejercicio2.enums.EstadoPedido;
 import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicio;
 import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicioImpl;
 import poo.ejercicioclase.ejercicio2.servicio.menu.MenuCompra;
 import poo.ejercicioclase.ejercicio2.servicio.menu.MenuCompraImpl;
 import poo.ejercicioclase.ejercicio2.servicio.pedido.PedidoServicioImpl;
-import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicio;
 import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicioImpl;
 import poo.ejercicioclase.ejercicio2.servicio.stock.StockServicioImpl;
 
-import java.util.Objects;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class Main {
@@ -36,7 +33,8 @@ public class Main {
         cliente.setDireccion("Calle falsa 123");
         cliente.setEmail("CorreoFalso@gmail.com");
         cliente.setCarrito(new Carrito());
-        carritoEnCurso = cliente.getCarrito();
+        setCarritoEnCurso(cliente.getCarrito());
+        getCarritoEnCurso().setCliente(cliente);
 
         CarritoServicio carritoServicio = new CarritoServicioImpl(new StockServicioImpl(),
                 new PedidoServicioImpl());
@@ -113,6 +111,11 @@ public class Main {
     }
 
     public static void setCarritoEnCurso(Carrito carritoEnCurso) {
+
+        carritoEnCurso.setId(1L);
+        carritoEnCurso.setPedido(null);
+        carritoEnCurso.setProducts(new HashMap<>());
+
         Main.carritoEnCurso = carritoEnCurso;
     }
 }

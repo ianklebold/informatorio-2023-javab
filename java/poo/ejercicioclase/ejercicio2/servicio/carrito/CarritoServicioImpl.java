@@ -53,6 +53,7 @@ public class CarritoServicioImpl implements CarritoServicio{
                     //Tratamiento -> Crear el pedido en estado pendiente
                     Pedido pedido = pedidoServicio.crearPedido(Main.getCarritoEnCurso(),null);
                     Main.getCarritoEnCurso().getCliente().getPedidos().add(pedido);
+                    Main.getCarritoEnCurso().setPedido(pedido);
                 }
                 stockServicio.modificarCantidad(prod.getId(),qty);
                 Main.getCarritoEnCurso().getProducts().put(prod,qty);

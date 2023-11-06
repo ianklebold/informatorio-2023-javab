@@ -4,6 +4,8 @@ import poo.ejercicioclase.ejercicio2.basededatos.BdProductos;
 import poo.ejercicioclase.ejercicio2.domain.Producto;
 import poo.ejercicioclase.ejercicio2.entrada.InputConsoleService;
 import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicioImpl;
+import poo.ejercicioclase.ejercicio2.servicio.pedido.PedidoServicio;
+import poo.ejercicioclase.ejercicio2.servicio.pedido.PedidoServicioImpl;
 import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicio;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class MenuCompraImpl implements MenuCompra{
 
     public MenuCompraImpl(ProductoServicio productoServicio) {
         this.productoServicio = productoServicio;
+
     }
 
     @Override
