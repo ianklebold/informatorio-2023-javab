@@ -1,4 +1,4 @@
-package poo.ejercicioclase.ejercicio2.servicio.menu;
+package poo.ejercicioclase.ejercicio2.servicio.menu.compra;
 
 import poo.ejercicioclase.ejercicio2.domain.Producto;
 import poo.ejercicioclase.ejercicio2.enums.EstadoPedido;

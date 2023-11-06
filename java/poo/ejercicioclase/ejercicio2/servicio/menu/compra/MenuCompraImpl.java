@@ -1,17 +1,15 @@
-package poo.ejercicioclase.ejercicio2.servicio.menu;
+package poo.ejercicioclase.ejercicio2.servicio.menu.compra;
 
 import poo.ejercicioclase.ejercicio2.basededatos.BdProductos;
 import poo.ejercicioclase.ejercicio2.domain.Producto;
 import poo.ejercicioclase.ejercicio2.entrada.InputConsoleService;
 import poo.ejercicioclase.ejercicio2.servicio.carrito.CarritoServicioImpl;
-import poo.ejercicioclase.ejercicio2.servicio.pedido.PedidoServicio;
-import poo.ejercicioclase.ejercicio2.servicio.pedido.PedidoServicioImpl;
+import poo.ejercicioclase.ejercicio2.servicio.menu.compra.MenuCompra;
 import poo.ejercicioclase.ejercicio2.servicio.producto.ProductoServicio;
 
-import java.util.List;
 import java.util.Optional;
 
-public class MenuCompraImpl implements MenuCompra{
+public class MenuCompraImpl implements MenuCompra {
 
     public static final String MENSAJE_SELECCIONAR_PRODUCTO_TEMPLATE = "Elegir producto";
 

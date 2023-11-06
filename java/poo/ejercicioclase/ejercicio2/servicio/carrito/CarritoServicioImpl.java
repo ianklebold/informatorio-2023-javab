@@ -38,7 +38,7 @@ public class CarritoServicioImpl implements CarritoServicio{
                     - El producto ya existe en el carrito
                  */
                 int nuevaCantidad = Main.getCarritoEnCurso().getProducts().get(prod) + qty;
-                if (nuevaCantidad > BdProductos.getProductById(prod.getId()).getStock()){
+                if (qty > BdProductos.getProductById(prod.getId()).getStock()){
                     System.out.println(String.format(MENSAJE_ALERTA_CANTIDAD_DISPONIBLE_TEMPLATE,prod.getStock()));
                 }else {
                     stockServicio.modificarCantidad(prod.getId(),qty);
