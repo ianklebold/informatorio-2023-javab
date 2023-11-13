@@ -1,8 +1,10 @@
 package org.informatorio.servicio.menu.principal;
 
 
+import org.informatorio.basededatos.BdProductos;
 import org.informatorio.domain.Producto;
 import org.informatorio.entrada.InputConsoleService;
+import org.informatorio.servicio.archivos.ArchivosServicio;
 import org.informatorio.servicio.carrito.CarritoServicio;
 import org.informatorio.servicio.menu.compra.MenuCompra;
 import org.informatorio.servicio.menu.pedido.MenuPedidos;
@@ -19,11 +21,14 @@ public class MenuPrincipalImpl implements MenuPrincipal{
 
     private MenuProducto menuProducto;
 
-    public MenuPrincipalImpl(CarritoServicio carritoServicio, MenuCompra menuCompra, MenuPedidos menuPedidos, MenuProducto menuProducto) {
+    private ArchivosServicio archivosServicio;
+
+    public MenuPrincipalImpl(CarritoServicio carritoServicio, MenuCompra menuCompra, MenuPedidos menuPedidos, MenuProducto menuProducto, ArchivosServicio archivosServicio) {
         this.carritoServicio = carritoServicio;
         this.menuCompra = menuCompra;
         this.menuPedidos = menuPedidos;
         this.menuProducto = menuProducto;
+        this.archivosServicio = archivosServicio;
     }
 
     @Override
@@ -33,6 +38,7 @@ public class MenuPrincipalImpl implements MenuPrincipal{
             System.out.println("2. Agregar producto al carrito");
             System.out.println("3. Comprar productos");
             System.out.println("4. Ver pedidos");
+            System.out.println("5. Exportar productos");
             System.out.println("0. Salir");
 
             System.out.println("Ingrese una opcion");
@@ -74,6 +80,10 @@ public class MenuPrincipalImpl implements MenuPrincipal{
                     System.out.println("Ver compras realizadas");
                     menuPedidos.mostrarPedidos();
                     break;
+                case 5:
+                    System.out.println("Exportando productos");
+
+                    archivosServicio.exportarProductosACsv(BdProductos.productos,"productos.csv");
                 case 0:
                     System.out.println("Salir");
                     break;

@@ -5,6 +5,7 @@ import org.informatorio.domain.Carrito;
 import org.informatorio.domain.Cliente;
 import org.informatorio.domain.Producto;
 import org.informatorio.entrada.InputConsoleService;
+import org.informatorio.servicio.archivos.ArchivosServicioImpl;
 import org.informatorio.servicio.carrito.CarritoServicio;
 import org.informatorio.servicio.carrito.CarritoServicioImpl;
 import org.informatorio.servicio.menu.compra.MenuCompra;
@@ -41,8 +42,9 @@ public class App
         MenuCompra menuCompra = new MenuCompraImpl(new ProductoServicioImpl());
         MenuPedidos menuPedidos = new MenuPedidoImpl(new PedidoServicioImpl());
         MenuProducto menuProducto = new MenuProductoImpl();
+        ArchivosServicioImpl archivosServicio = new ArchivosServicioImpl();
 
-        MenuPrincipal menuPrincipal = new MenuPrincipalImpl(carritoServicio,menuCompra,menuPedidos,menuProducto);
+        MenuPrincipal menuPrincipal = new MenuPrincipalImpl(carritoServicio,menuCompra,menuPedidos,menuProducto,archivosServicio);
         menuPrincipal.iniciar();
 
         //Cerrar el scanner
